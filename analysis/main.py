@@ -1,20 +1,20 @@
 import datetime
 
 import backtrader as bt
-
+from strategies.MacdMARsi import MacdMARsi
 from strategies.twoMA import twoMA
 from strategies.simple_MA import MAStrategy
 
 if __name__ == '__main__':
     cerebro = bt.Cerebro()  # Движок backtrader
-    cerebro.addstrategy(MAStrategy, SMAperiod=200)      # (twoMA, SMAperiod1=50, SMAperiod2=120)
+    cerebro.addstrategy(MacdMARsi, SMAperiod=200)      # (twoMA, SMAperiod1=50, SMAperiod2=120)
     cerebro.broker.setcash(100000)
     data = bt.feeds.GenericCSVData(
-        dataname='Data\TQBR.SBER_D1.txt',
+        dataname='Data\TQBR.SBER_M15.txt',
         separator='\t',
         dtformat='%d.%m.%Y %H:%M',
         #tmformat= '%H:%M',
-        fromdate=datetime.datetime(2011, 1, 25),
+        fromdate=datetime.datetime(2015, 1, 25),
         todate=datetime.datetime(2023, 9, 1),
         openinterest = None
     )
