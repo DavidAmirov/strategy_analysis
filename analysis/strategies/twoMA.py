@@ -19,6 +19,7 @@ class twoMA(BaseStrategy):
         self.Order = None
         self.sma1 = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.SMAperiod1)
         self.sma2 = bt.indicators.MovingAverageSimple(self.datas[0], period=self.params.SMAperiod2)
+        self.crossover = bt.ind.CrossOver(self.sma1, self.sma2)
      
     def next(self):
         '''Приход нового бара'''
@@ -26,13 +27,13 @@ class twoMA(BaseStrategy):
         if self.Order:
             return
         if not self.position:
-            isSignalBuy =  self.sma1[-1] < self.sma2[-1] and self.sma1[0] >= self.sma2[0] and self.DataHigh[0] > self.sma1[0]
+            isSignalBuy = self.crossover > 0 
             if isSignalBuy:
                 self.log('Покупка')
                 self.Order = self.buy()
-
         else:
-            isSignalSell = self.sma1[-1] > self.sma2[-1] and self.sma1[0] <= self.sma2[0] and self.Datalow[0] < self.sma1[0]
+            isSignalSell = self.crossover < 0
             if isSignalSell:
                 self.log('Продажа')
                 self.Order = self.sell()
+

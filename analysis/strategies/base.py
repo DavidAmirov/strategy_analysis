@@ -7,7 +7,7 @@ class BaseStrategy(bt.Strategy):
 
     def log(self, txt, dt=None):
         '''Вывод строки с датой на конслоь'''
-        dt = dt or self.datas[0].datetime.date(0)
+        dt = dt or self.datas[0].datetime.datetime()
         print(f'{dt}, {txt}')
     
 

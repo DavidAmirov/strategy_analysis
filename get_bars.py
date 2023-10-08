@@ -93,9 +93,9 @@ if __name__ == '__main__':  # Точка входа при запуске это
     skip_last_date = True  # Если получаем данные внутри сессии, то не берем бары за дату незавершенной сессии
     # skip_last_date = False  # Если получаем данные, когда рынок не работает, то берем все бары
     #save_candles_to_file(class_code, sec_codes, four_price_doji=True)  # Дневные бары
-    save_candles_to_file(class_code, sec_codes, 'M', 60, skip_last_date=skip_last_date, skip_first_date=True)  # часовые бары
+    #save_candles_to_file(class_code, sec_codes, 'M', 60, skip_last_date=skip_last_date, skip_first_date=True)  # часовые бары
     #save_candles_to_file(class_code, sec_codes, 'M', 15, skip_last_date=skip_last_date, four_price_doji=True)  # 15-и минутные бары
-    #save_candles_to_file(class_code, sec_codes, 'M', 5, skip_last_date=skip_last_date)  # 5-и минутные бары
+    save_candles_to_file(class_code, sec_codes, 'M', 5, skip_last_date=skip_last_date, four_price_doji=True)  # 5-и минутные бары
     #save_candles_to_file(class_code, sec_codes, 'M', 1, skip_last_date=skip_last_date, four_price_doji=True)  # минутные бары
 
     qp_provider.CloseConnectionAndThread()  # Перед выходом закрываем соединение и поток QuikPy
